@@ -36,7 +36,7 @@
 
 \usepackage{pgfplots, pgfplotstable}
 \pgfplotsset{compat=1.9}
-
+\usepackage{cancel}
 \usepackage{circuitikz}
 
 \begin{document} % конец преамбулы, начало документа
@@ -52,8 +52,8 @@
 	\large Задание 1. Неделя 1
 \end{center}
 
-\noindent\textbf{15.45(2)\\Вычислить:}
-
+\noindent\textbf{15.45(2).}
+Вычислить:
 \begin{align}\label{key}
 	&\left(
 		\begin{array}{ccc|ccc}
@@ -120,8 +120,8 @@
 	\right)
 \end{align}
 
-\noindent\textbf{15.54(3)\\Вычислить:}
-
+\noindent\textbf{15.54(3).}
+Вычислить:
 \begin{align*}
 	&\left(
 		\begin{array}{ccccc|ccccc}
@@ -157,8 +157,8 @@
 	\right)
 \end{align*}
 
-\noindent\textbf{15.54(123e)\\Вычислить:}
-
+\noindent\textbf{15.54(12*).}
+Вычислить:
 \begin{align*}\small
 	\left(
 		\begin{array}{ccccccc|ccccccc}
@@ -201,12 +201,11 @@ $\small
 	\right)
 $\\\\
 
-\noindent\textbf{15.56\\}
-
+\noindent\textbf{15.56.}
 Пусть $ A^m=O $. Доказать, что 
 $ (E-A)^{-1}=E+A+\cdots+A^{m-1}$.\\
 
-$ \square $ По определению $ A^{-1} $~--- обратная к 
+\noindent $ \square $ По определению $ A^{-1} $~--- обратная к 
 $ A \iff AA^{-1}=A^{-1}A=E $. Докажем оба равенства.
 \begin{enumerate}
 	\item $ (E-A)(E+A+\cdots+A^{m-1})\stackrel{?}{=}E $.
@@ -222,25 +221,17 @@ $ A \iff AA^{-1}=A^{-1}A=E $. Докажем оба равенства.
 	\]
 \end{enumerate}\hfill$ \blacksquare $
 
-\noindent\textbf{15.58\\}
+\noindent\textbf{15.58.} Проверить формулу $ (S^{-1}AS)^m=S^{-1}A^mS. $
 
 
-
+\[
+	(S^{-1}AS)^m=S^{-1}A\cancel{(S\cdot S^{-1})}AS\cdot\ldots\cdot S^{-1}AS=
+	S^{-1}\underbrace{A\cdot\ldots\cdot A}_{m~раз}S=S^{-1}A^mS.
+\]
 
 
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
 
 
 
