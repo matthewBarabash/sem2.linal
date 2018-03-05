@@ -1,0 +1,246 @@
+\documentclass[a4paper,12pt]{article} % добавить leqno в [] для нумерации слева
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в фомулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage[left=1cm,right=2cm,top=2cm,bottom=2cm,footskip=1cm,includefoot]
+{geometry}
+%%% Дополнительная работа с математикой
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+	{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+\newcommand{\RomanNumeralCaps}[1]
+{\MakeUppercase{\romannumeral #1}}
+
+\usepackage{pgfplots, pgfplotstable}
+\pgfplotsset{compat=1.9}
+
+\usepackage{circuitikz}
+
+\begin{document} % конец преамбулы, начало документа
+
+\hfill
+\begin{minipage}{4.5cm}
+	Просвирин Кирилл\\
+	712 группа\\
+\end{minipage}
+
+\begin{center}
+	\Large\textbf{Линейная алгебра\\} 
+	\large Задание 1. Неделя 1
+\end{center}
+
+\noindent\textbf{15.45(2)\\Вычислить:}
+
+\begin{align}\label{key}
+	&\left(
+		\begin{array}{ccc|ccc}
+		2 & -1 & 0    & 1 & 0 & 0\\
+		0 & 2 & -1    & 0 & 1 & 0\\
+		-1 & -1 & 1   & 0 & 0 & 1
+		\end{array}
+	\right)
+	\sim
+	\left(
+		\begin{array}{ccc|ccc}
+		2 & -1 & 0    & 1 & 0 & 0\\
+		0 & 2 & -1    & 0 & 1 & 0\\
+		0 & -3 & 2    & 1 & 0 & 2
+		\end{array}
+	\right)
+	\sim
+	\left(
+		\begin{array}{ccc|ccc}
+		2 & -1 & 0    & 1 & 0 & 0\\
+		0 & 2 & -1    & 0 & 1 & 0\\
+		0 & 0 & 1     & 2 & 3 & 4
+		\end{array}
+	\right)
+	\sim\\
+	&\sim\left(
+		\begin{array}{ccc|ccc}
+		2 & -1 & 0    & 1 & 0 & 0\\
+		0 & 2 & 0    & 2 & 4 & 4\\
+		0 & 0 & 1     & 2 & 3 & 4
+		\end{array}
+	\right)
+	\sim
+	\left(
+		\begin{array}{ccc|ccc}
+		4 & 0 & 0    & 4 & 4 & 4\\
+		0 & 1 & 0    & 1 & 2 & 2\\
+		0 & 0 & 1     & 2 & 3 & 4
+		\end{array}
+	\right)
+	\sim
+	\left(
+		\begin{array}{ccc|ccc}
+		1 & 0 & 0    & 1 & 1 & 1\\
+		0 & 1 & 0    & 1 & 2 & 2\\
+		0 & 0 & 1     & 2 & 3 & 4
+		\end{array}
+	\right)~~~\Longrightarrow\\
+	&\textbf{Ответ: }
+	\left(
+	\begin{array}{ccc}
+	2 & -1 & 0\\
+	0 & 2 & -1\\
+	-1 & -1 & 1
+	\end{array}
+	\right)^{-1}
+	=
+	\left(
+		\begin{array}{ccc}
+		1 & 1 & 1\\
+		1 & 2 & 2\\
+		2 & 3 & 4
+		\end{array}
+	\right)
+\end{align}
+
+\noindent\textbf{15.54(3)\\Вычислить:}
+
+\begin{align*}
+	&\left(
+		\begin{array}{ccccc|ccccc}
+		1&1&\cdots&1&1					&1&0&\cdots&0&0\\
+		0&1&\cdots&1&1    				&0&1&\cdots&0&0\\
+		\vdots&\vdots&\ddots&\vdots&\vdots&\vdots
+		&\vdots&\ddots&\vdots&\vdots\\
+		0&0&\cdots&1&1     				&0&0&\cdots&1&0\\
+		0&0&\cdots&0&1 					&0&0&\cdots&0&1\\
+		\end{array}
+	\right)
+	\stackrel{(1)-(2)}{\sim}
+	\left(
+		\begin{array}{ccccc|ccccc}
+		1&0&\cdots&0&0					&1&-1&\cdots&0&0\\
+		0&1&\cdots&1&1    				&0&1&\cdots&0&0\\
+		\vdots&\vdots&\ddots&\vdots&\vdots&\vdots
+		&\vdots&\ddots&\vdots&\vdots\\
+		0&0&\cdots&1&1     				&0&0&\cdots&1&0\\
+		0&0&\cdots&0&1 					&0&0&\cdots&0&1\\
+		\end{array}
+	\right)
+	\stackrel{(2)-(1)}{\stackrel{(3)-(4)}{\stackrel{\cdots}{\stackrel{(n-1)-(n)}{\sim}}}}\\
+	&\sim\left(
+	\begin{array}{ccccc|ccccc}
+	1&0&\cdots&0&0					&1&-1&\cdots&0&0\\
+	0&1&\cdots&0&0    				&0&1&\cdots&0&0\\
+	\vdots&\vdots&\ddots&\vdots&\vdots&\vdots
+	&\vdots&\ddots&\vdots&\vdots\\
+	0&0&\cdots&1&0     				&0&0&\cdots&1&-1\\
+	0&0&\cdots&0&1 					&0&0&\cdots&0&1\\
+	\end{array}
+	\right)
+\end{align*}
+
+\noindent\textbf{15.54(123e)\\Вычислить:}
+
+\begin{align*}\small
+	\left(
+		\begin{array}{ccccccc|ccccccc}
+		1&1&0&\cdots&0&0&0					&1&0&0&\cdots&0&0&0\\
+		0&1&1&\cdots&0&0&0    				&0&1&0&\cdots&0&0&0\\
+		0&0&1&\cdots&0&0&0					&0&0&1&\cdots&0&0&0\\
+		\vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots
+		&\vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots\\
+		0&0&0&\cdots&1&1&0     				&0&0&0&\cdots&1&0&0\\
+		0&0&0&\cdots&0&1&1					&0&0&0&\cdots&0&1&0\\
+		0&0&0&\cdots&0&0&1					&0&0&0&\cdots&0&0&1\\
+		\end{array}
+	\right)
+	\stackrel{(n-1)-(n)}{\sim}
+	\left(
+	\begin{array}{ccccccc|ccccccc}
+	1&1&0&\cdots&0&0&0					&1&0&0&\cdots&0&0&0\\
+	0&1&1&\cdots&0&0&0    				&0&1&0&\cdots&0&0&0\\
+	0&0&1&\cdots&0&0&0					&0&0&1&\cdots&0&0&0\\
+	\vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots
+	&\vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots\\
+	0&0&0&\cdots&1&1&0     				&0&0&0&\cdots&1&0&0\\
+	0&0&0&\cdots&0&1&0					&0&0&0&\cdots&0&1&-1\\
+	0&0&0&\cdots&0&0&1					&0&0&0&\cdots&0&0&1\\
+	\end{array}
+	\right)
+\end{align*}
+
+$\small
+	\stackrel{(n-2)-(n-1)}{\stackrel{(n-3)-(n-4)}{\stackrel{\cdots}{\stackrel{(1)-(2)}{\sim}}}}
+	\left(
+	\begin{array}{ccccc|ccccc}
+	1&1&0&\cdots&0					&1&-1&1&\cdots&(-1)^{n-1}\\
+	0&1&1&\cdots&0    				&0&1&-1&\cdots&(-1)^{n-2}\\
+	0&0&1&\cdots&0					&0&0&1&\cdots&(-1)^{n-3}\\
+	\vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots
+	&\vdots&\ddots&\vdots\\
+	0&0&0&\cdots&1     				&0&0&0&\cdots&1\\
+	\end{array}
+	\right)
+$\\\\
+
+\noindent\textbf{15.56\\}
+
+Пусть $ A^m=O $. Доказать, что 
+$ (E-A)^{-1}=E+A+\cdots+A^{m-1}$.\\
+
+$ \square $ По определению $ A^{-1} $~--- обратная к 
+$ A \iff AA^{-1}=A^{-1}A=E $. Докажем оба равенства.
+\begin{enumerate}
+	\item $ (E-A)(E+A+\cdots+A^{m-1})\stackrel{?}{=}E $.
+	Раскрывая скобки получим
+	\[
+		E+A+\cdots+A^{m-1}-A-\cdots-A^{m-1}=E \Longrightarrow \textbf{верно}
+	\]
+	\item $ (E+A+\cdots+A^{m-1})(E-A)\stackrel{?}{=}E $.
+	Раскрывая скобки получим
+	\[
+	E-\underbrace{A+A}-\underbrace{A^2+A^2}+\cdots+
+	\underbrace{A^{m-1}-A^{m-1}}-0=E \Longrightarrow \textbf{верно}
+	\]
+\end{enumerate}\hfill$ \blacksquare $
+
+\noindent\textbf{15.58\\}
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
